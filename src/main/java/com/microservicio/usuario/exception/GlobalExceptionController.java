@@ -1,6 +1,5 @@
-package com.microservicio.usuario.exception.controller;
+package com.microservicio.usuario.exception;
 
-import com.microservicio.usuario.exception.ResourceNotFoundException;
 import com.microservicio.usuario.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +11,10 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse> handlerResourceNotFoundException(ResourceNotFoundException resourceNotFoundException){
-        String message = resourceNotFoundException.getMessage();
+        String mensaje = resourceNotFoundException.getMessage();
 
-        ApiResponse response = new ApiResponse().builder()
-                .message(message)
+        ApiResponse response = ApiResponse.builder()
+                .message(mensaje)
                 .success(true)
                 .status(HttpStatus.NOT_FOUND)
                 .build();
